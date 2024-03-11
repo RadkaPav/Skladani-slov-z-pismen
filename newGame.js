@@ -27,7 +27,8 @@ export const newGame = (index) => {
     //vytvoření políček s písmeny
     for (let j = 0; j < data[index].letters.length; j++) {
         const div = document.createElement("div")
-        div.classList.add(`origin`)
+        div.classList.add("origin")
+        div.classList.add("div")
         div.setAttribute("id", `${j}`)
         div.innerHTML = `<div class="box" draggable="true">${data[index].letters[j]}</div>`
         container.appendChild(div)
@@ -38,6 +39,7 @@ export const newGame = (index) => {
         //vytvoření cílových políček
         const goalDiv = document.createElement("div")
         goalDiv.classList.add("goal")
+        goalDiv.classList.add("div")
         goalContainer.appendChild(goalDiv)
     }
 
