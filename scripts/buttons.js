@@ -1,22 +1,15 @@
-import { newGame, container, goalContainer, img } from "./newGame.js"
-import { gameOver, button } from "./gameOver.js"
+import { container, goalContainer, img, button, newGameButton, modal } from "./querySelectors.js"
+import { newGame } from "./newGame.js"
+import { gameOver } from "./gameOver.js"
 import { click } from "./click.js"
 import { dragAndDrop } from "./dragAndDrop.js"
 import { data } from "./data.js"
 
-const main = document.querySelector("main")
+
 let index = 0
 
-newGame(index)
-click()
-dragAndDrop()
-gameOver()
-
-document.addEventListener("click", gameOver)
-document.addEventListener("drop", gameOver)
-
 //DALŠÍ SLOVO
-button.addEventListener("click", function () {
+button.addEventListener("click", () => {
     index += 1
     container.innerHTML = ""
     goalContainer.innerHTML = ""
@@ -31,15 +24,13 @@ button.addEventListener("click", function () {
     //pokud slovo není poslední, spustí se další v řadě
     else {
         newGame(index)
-        click()
         dragAndDrop()
+        click()
     }
 })
 
 //NOVÁ HRA
-const newGameButton = document.querySelector(".new-game")
-newGameButton.addEventListener("click", function () {
-    const modal = document.querySelector(".modal")
+newGameButton.addEventListener("click", () => {
     modal.classList.remove("open-modal")
     img.classList.remove("invisible")
     document.addEventListener("click", gameOver)

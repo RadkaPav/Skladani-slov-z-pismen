@@ -1,11 +1,18 @@
 //PŘETAHOVÁNÍ KLIKNUTÍM
+
+let draggedItem = null
+const createDraggedItem = (whereToAdd) => {
+    whereToAdd.appendChild(draggedItem)
+    draggedItem.style.display = 'block'
+    draggedItem = null
+}
+
 // Přidání posluchačů událostí pro všechny boxy
 export const click = () => {
-    let draggedItem = null
-    const boxes = document.querySelectorAll('.box')
-    const goals = document.querySelectorAll('.goal')
-    const originalBoxes = document.querySelectorAll(".origin")
-
+ const boxes = document.querySelectorAll(".box")
+ const goals = document.querySelectorAll(".goal")
+ const originalBoxes = document.querySelectorAll(".origin")
+    
     boxes.forEach(box => {
         box.addEventListener('click', () => {
             draggedItem = box
@@ -14,10 +21,8 @@ export const click = () => {
             if (draggedItem.classList.contains("dragged")) {
                 const originalBox = Array.from(originalBoxes).find(oneBox => oneBox.id === draggedItem.id)
                 if (originalBox) {
-                    originalBox.appendChild(draggedItem)
-                    draggedItem.style.display = 'block'
                     draggedItem.classList.remove("dragged")
-                    draggedItem = null
+                    createDraggedItem(originalBox)
                 }
             }
             //přetažení prvků na cílové místo
@@ -25,9 +30,7 @@ export const click = () => {
                 draggedItem.classList.add("dragged")
                 const nextEmptyGoal = Array.from(goals).find(goal => goal.children.length === 0)
                 if (nextEmptyGoal) {
-                    nextEmptyGoal.appendChild(draggedItem)
-                    draggedItem.style.display = 'block'
-                    draggedItem = null
+                    createDraggedItem(nextEmptyGoal)
                 }
             }
         })
