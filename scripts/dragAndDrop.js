@@ -1,6 +1,3 @@
-//PŘETAHOVÁNÍ PRVKŮ
-
-// Přidání posluchačů událostí pro všechny boxy s písmeny
 export const dragAndDrop = () => {
     let draggedItem = null
     const boxes = document.querySelectorAll(".box")
@@ -12,7 +9,6 @@ export const dragAndDrop = () => {
         })
     })
 
-    //Přidání posluchačů událostí pro všechny cílové i startovní boxy
     items.forEach(goal => {
         goal.addEventListener('dragover', e => e.preventDefault())
         goal.addEventListener('dragleave', e => e.preventDefault())
