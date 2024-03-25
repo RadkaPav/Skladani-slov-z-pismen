@@ -1,5 +1,3 @@
-//PŘETAHOVÁNÍ KLIKNUTÍM
-
 let draggedItem = null
 const createDraggedItem = (whereToAdd) => {
     whereToAdd.appendChild(draggedItem)
@@ -7,7 +5,6 @@ const createDraggedItem = (whereToAdd) => {
     draggedItem = null
 }
 
-// Přidání posluchačů událostí pro všechny boxy
 export const click = () => {
  const boxes = document.querySelectorAll(".box")
  const goals = document.querySelectorAll(".goal")
@@ -17,7 +14,7 @@ export const click = () => {
         box.addEventListener('click', () => {
             draggedItem = box
             draggedItem.style.display = 'none'
-            //přetažené prvky se vrací zpět na původní místo
+            
             if (draggedItem.classList.contains("dragged")) {
                 const originalBox = Array.from(originalBoxes).find(oneBox => oneBox.id === draggedItem.id)
                 if (originalBox) {
@@ -25,7 +22,7 @@ export const click = () => {
                     createDraggedItem(originalBox)
                 }
             }
-            //přetažení prvků na cílové místo
+            
             if (draggedItem) {
                 draggedItem.classList.add("dragged")
                 const nextEmptyGoal = Array.from(goals).find(goal => goal.children.length === 0)
